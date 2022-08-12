@@ -5,11 +5,16 @@ export const githubApi = createApi({
 		baseUrl: 'https://api.github.com/'
 	}),
 	endpoints: build => ({
-		searchUsers: build.query({
-			query: () => ({
-				url: 'search/users'
+		searchUsers: build.query<any, string>({
+			query: (search: string) => ({
+				url: 'search/users',
+				params: {
+					q:search
+				}
 
 			})
 		})
 	 })
 }) 
+
+export const {useSearchUsersQuery} = githubApi
